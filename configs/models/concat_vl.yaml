@@ -8,16 +8,21 @@ model_config:
         pretrained: true
         pool_type: avg
         num_output_features: 1
+    image_mapper:
+      params:
+        module:linear
+        in_dim:2048
+        out_dim:32
     text_encoder:
       params:
         module: linear
         in_dim: 300
-        out_dim: 300
+        out_dim: 32
     fusion:
       params:
-        # Visual Dim (2048) + Text Dim (300)
+        # Visual Dim (32) + Text Dim (32)
         # Follow the API of nn.Linear
-        in_features: 2348
+        in_features: 64
         out_features: 512
     losses:
     - cross_entropy
